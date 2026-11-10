@@ -1,0 +1,82 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "ZadAlQulubUpdateManifest",
+  "description": "Schema for Zad Al Qulub App Update Manifests",
+  "type": "object",
+  "required": [
+    "appName",
+    "latestVersionName",
+    "versionCode",
+    "minSupportedVersionCode",
+    "releaseDate",
+    "releaseChannel",
+    "releaseNotes",
+    "updateType"
+  ],
+  "properties": {
+    "$schema": {
+      "type": "string"
+    },
+    "appName": {
+      "type": "string"
+    },
+    "latestVersionName": {
+      "type": "string"
+    },
+    "versionCode": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "minSupportedVersionCode": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "releaseDate": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "releaseChannel": {
+      "type": "string",
+      "enum": ["production", "staging", "development"]
+    },
+    "releaseNotes": {
+      "type": "object",
+      "required": ["ar"],
+      "properties": {
+        "ar": { "type": "string" },
+        "en": { "type": "string" }
+      }
+    },
+    "apkDownloadUrl": {
+      "type": ["string", "null"]
+    },
+    "apkSha256": {
+      "type": ["string", "null"],
+      "pattern": "^([a-fA-F0-9]{64})?$"
+    },
+    "apkSizeBytes": {
+      "type": ["integer", "null"],
+      "minimum": 0
+    },
+    "isDownloadReady": {
+      "type": "boolean"
+    },
+    "requiredRuntimeCompatibility": {
+      "type": "string"
+    },
+    "updateType": {
+      "type": "string",
+      "enum": ["mandatory", "recommended", "optional"]
+    },
+    "otaBundleUrl": {
+      "type": "string"
+    },
+    "otaRuntimeVersion": {
+      "type": "string"
+    },
+    "signature": {
+      "type": "string"
+    }
+  },
+  "additionalProperties": false
+}
